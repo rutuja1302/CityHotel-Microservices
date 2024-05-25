@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IHotelService {
     List<HotelMaster> getHotelList();
+
+    List<HotelMaster> getHotelByCityId(Integer cityid);
 }

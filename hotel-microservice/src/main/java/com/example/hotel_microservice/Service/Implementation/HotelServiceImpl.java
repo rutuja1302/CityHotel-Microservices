@@ -18,4 +18,9 @@ public class HotelServiceImpl implements IHotelService {
     public List<HotelMaster> getHotelList() {
         return hotelMasterRepository.findAll();
     }
+
+    @Override
+    public List<HotelMaster> getHotelByCityId(Integer cityid) {
+        return hotelMasterRepository.findByCityid(cityid);
+    }
 }
