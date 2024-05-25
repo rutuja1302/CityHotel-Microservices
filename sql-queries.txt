@@ -1,0 +1,42 @@
+**************************************************************
+===========creation of city table===============================
+**************************************************************
+
+-- Table: public.citymaster
+
+-- DROP TABLE public.citymaster;
+
+CREATE TABLE public.citymaster
+(
+    cityid integer NOT NULL DEFAULT nextval('citymaster_cityid_seq'::regclass),
+    cityname character varying(200) COLLATE pg_catalog."default",
+    CONSTRAINT citymaster_pkey PRIMARY KEY (cityid)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.citymaster
+    OWNER to postgres;
+
+**************************************************************
+============creation of hotel table============================
+**************************************************************
+
+-- Table: public.hotelmaster
+
+-- DROP TABLE public.hotelmaster;
+
+CREATE TABLE public.hotelmaster
+(
+    hotelid integer NOT NULL DEFAULT nextval('hotelmaster_hotelid_seq'::regclass),
+    hotelname character varying(200) COLLATE pg_catalog."default",
+    cityid integer,
+    CONSTRAINT hotelmaster_pkey PRIMARY KEY (hotelid)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.hotelmaster
+    OWNER to postgres;
+
+**************************************************************
