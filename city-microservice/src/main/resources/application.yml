@@ -16,3 +16,8 @@ spring:
 
 url:
   hotelbyid: http://localhost:8080/getHotelsByCityId/
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
