@@ -1,0 +1,15 @@
+server:
+  port:
+    8099
+
+spring:
+  application:
+    name:
+      city-application
+  datasource:
+    url: jdbc:postgresql://localhost:5432/city-hotel
+    username: postgres
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
