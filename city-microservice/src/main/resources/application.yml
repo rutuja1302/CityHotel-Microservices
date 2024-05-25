@@ -13,3 +13,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+url:
+  hotelbyid: http://localhost:8080/getHotelsByCityId/

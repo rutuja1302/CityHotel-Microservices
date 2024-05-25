@@ -1,6 +1,7 @@
 package com.example.city_microservice.Controller;
 
 import com.example.city_microservice.Entities.CityMaster;
+import com.example.city_microservice.Entities.CityResponse;
 import com.example.city_microservice.Services.ICityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,4 +20,11 @@ public class CityMasterController {
     public List<CityMaster> getCityList(){
         return cityService.getAllCities();
     }
+
+    //Get All cities & their corresponding hotels
+    @GetMapping("/getAllHotelsInCities")
+    public List<CityResponse> getCitiesAndHotels(){
+        return cityService.getAllHotelsInCities();
+    }
+
 }
