@@ -3,6 +3,7 @@ package com.example.city_microservice.Services;
 import com.example.city_microservice.Entities.CityMaster;
 import com.example.city_microservice.Entities.CityResponse;
 import com.example.city_microservice.Entities.HotelMaster;
+import com.example.city_microservice.FeignClient.CityFeignClient;
 import com.example.city_microservice.Repository.CityMasterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +24,9 @@ public class CItyServiceImpl implements ICityService{
 
     @Value("${url.hotelbyid}")
     private String serviceUrl;
+
+    @Autowired
+    CityFeignClient cityFeignClient;
 
     @Override
     public List<CityMaster> getAllCities() {
@@ -46,6 +50,13 @@ public class CItyServiceImpl implements ICityService{
             cityResponseList.add(cityResponse);
         });
         return cityResponseList;
+    }
+
+    @Override
+    public List<HotelMaster> getHotelsForCityId(Integer cityid) {
+        List<HotelMaster> cityResponseList = new ArrayList<>();
+        cityResponseList = cityFeignClient.getHotelByCityId(cityid);
+        return  cityResponseList;
     }
 
     public List<HotelMaster> getHotelsByCityId(Integer cityid){
