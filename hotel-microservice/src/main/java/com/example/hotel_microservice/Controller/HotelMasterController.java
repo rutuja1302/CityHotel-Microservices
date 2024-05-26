@@ -30,4 +30,9 @@ public class HotelMasterController {
         hotelMasterList = hotelService.getHotelByCityId(cityid);
         return hotelMasterList;
     }
+
+    @GetMapping("/test")
+    public HotelMaster justToTestFaultTolerance(){
+        throw new RuntimeException("Error in Hotel Master Service");
+    }
 }

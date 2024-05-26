@@ -12,4 +12,6 @@ public interface ICityService {
     List<CityResponse> getAllHotelsInCities();
 
     List<HotelMaster> getHotelsForCityId(Integer cityid);
+
+    HotelMaster test();
 }

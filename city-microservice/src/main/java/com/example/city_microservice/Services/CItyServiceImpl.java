@@ -5,6 +5,9 @@ import com.example.city_microservice.Entities.CityResponse;
 import com.example.city_microservice.Entities.HotelMaster;
 import com.example.city_microservice.FeignClient.CityFeignClient;
 import com.example.city_microservice.Repository.CityMasterRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,10 @@ import java.util.function.Consumer;
 
 @Service
 public class CItyServiceImpl implements ICityService{
+    Logger logger = LogManager.getLogger(CItyServiceImpl.class);
+
+    int count = 1;
+
     @Autowired
     CityMasterRepository cityMasterRepository;
 
@@ -57,6 +64,19 @@ public class CItyServiceImpl implements ICityService{
         List<HotelMaster> cityResponseList = new ArrayList<>();
         cityResponseList = cityFeignClient.getHotelByCityId(cityid);
         return  cityResponseList;
+    }
+
+    @Override
+    @CircuitBreaker(name = "hotelService", fallbackMethod = "getDummyHotel")
+    public HotelMaster test() {
+        logger.info("count: "+count);
+        count++;
+        return cityFeignClient.justToTestFaultTolerance();
+    }
+
+    public HotelMaster getDummyHotel(Throwable throwable) {
+        logger.error("In Fallback method");
+        return new HotelMaster(1,"Dummy",2);
     }
 
     public List<HotelMaster> getHotelsByCityId(Integer cityid){

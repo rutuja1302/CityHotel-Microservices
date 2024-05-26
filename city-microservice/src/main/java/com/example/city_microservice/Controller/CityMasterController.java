@@ -35,4 +35,10 @@ public class CityMasterController {
         return cityService.getHotelsForCityId(cityid);
     }
 
+    //Test Fault Tolerance
+    @GetMapping("/fault-tolerance-testing")
+    public HotelMaster test(){
+        return cityService.test();
+    }
+
 }

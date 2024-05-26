@@ -21,3 +21,30 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+#properties for circuit breaker
+resilience4j:
+  circuitbreaker:
+    instances:
+      hotelService:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30000
+        automatic-transition-from-open-to-half-open-enabled: true
+        permitted-numbers-of-calls-in-half-open-state : 5
+        #for circuit breaker to work with actuator
+        allow-health-indicator-to-fail: true
+        register-health-indicator: true
+
+#for actuator
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always

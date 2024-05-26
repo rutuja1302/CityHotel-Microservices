@@ -21,4 +21,7 @@ public interface CityFeignClient {
     //@GetMapping("/{cityid}") //while calling url/service
     @GetMapping("/hotel-application/getHotelsByCityId/{cityid}") //while calling api-gateway
     public List<HotelMaster> getHotelByCityId(@PathVariable Integer cityid);
+
+    @GetMapping("/hotel-application/test")
+    public HotelMaster justToTestFaultTolerance();
 }
