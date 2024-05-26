@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(url = "${url.hotelbyid}",value = "city-feign-client")
+//@FeignClient(url = "${url.hotelbyid}",value = "city-feign-client")
 //can also include path attribute for url path extension to "url" attribute
+@FeignClient(value = "hotel-application", path="/getHotelsByCityId") //instead of url we will be calling service by name
 public interface CityFeignClient {
 
     //We can directly access api of hotel service
