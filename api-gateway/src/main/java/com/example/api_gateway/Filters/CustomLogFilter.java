@@ -20,6 +20,7 @@ public class CustomLogFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
+        logger.info("Path = "+request.getPath());
         logger.info("Authorization = "+request.getHeaders().getFirst("Authorization"));
         return chain.filter(exchange).then(Mono.fromRunnable(() -> {
             //Post - filter
