@@ -25,6 +25,7 @@ public class HotelMasterController {
 
     @GetMapping("/getHotelsByCityId/{cityid}")
     public List<HotelMaster> getHotelsByCityId(@PathVariable Integer cityid){
+        System.out.println("Inside Hotel Service 1 for cityid: "+cityid);
         List<HotelMaster> hotelMasterList = new ArrayList<>();
         hotelMasterList = hotelService.getHotelByCityId(cityid);
         return hotelMasterList;
